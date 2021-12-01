@@ -19,5 +19,5 @@ def increase_count(items: list[int]) -> int:
 
 
 if __name__ == "__main__":
-    params = load_input("part_1_input_2.txt")
+    params = load_input("input.txt")
     print(increase_count(params))
