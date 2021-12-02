@@ -141,3 +141,6 @@ cython_debug/
 
 # Advent of Code input files
 *.txt
+
+# Visualizations
+*.mp4
