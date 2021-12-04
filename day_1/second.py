@@ -4,8 +4,8 @@ from day_1.first import load_input
 def calculate_sliding_difference(items: list[int]) -> list[int]:
     results = []
     for i in range(3, len(items)):
-        prev = sum(items[i-3:i])
-        curr = sum(items[i-2:i+1])
+        prev = sum(items[i - 3 : i])
+        curr = sum(items[i - 2 : i + 1])
         results.append(curr - prev)
     return results
 

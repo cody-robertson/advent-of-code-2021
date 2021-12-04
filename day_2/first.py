@@ -18,7 +18,9 @@ def parse_instructions_from_input(file_name: str) -> list[Instruction]:
     with open(file_name, "r") as input_file:
         for line in input_file:
             direction, value = line.lower().strip().split(" ")
-            instructions.append(Instruction(direction=Direction(direction), value=int(value)))
+            instructions.append(
+                Instruction(direction=Direction(direction), value=int(value))
+            )
     return instructions
 
 

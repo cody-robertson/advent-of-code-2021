@@ -1,6 +1,6 @@
 def load_input(file_name: str) -> list[int]:
     depths = []
-    with open(file_name, 'r') as input_file:
+    with open(file_name, "r") as input_file:
         for line in input_file:
             depths.append(int(line.strip()))
     return depths
@@ -8,8 +8,8 @@ def load_input(file_name: str) -> list[int]:
 
 def calculate_differences(items: list[int]) -> list[int]:
     result = []
-    for i in range(len(items)-1):
-        result.append(items[i+1] - items[i])
+    for i in range(len(items) - 1):
+        result.append(items[i + 1] - items[i])
     return result
 
 

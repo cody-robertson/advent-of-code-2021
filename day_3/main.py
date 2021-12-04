@@ -8,7 +8,7 @@ class MetricStrings(NamedTuple):
 
 def load_input(file_name: str) -> list[str]:
     binary_numbers = []
-    with open(file_name, 'r') as input_file:
+    with open(file_name, "r") as input_file:
         for line in input_file:
             binary_numbers.append(line.strip())
     return binary_numbers
@@ -24,10 +24,14 @@ def average_bits(binary_numbers: list[str]):
 
 
 def average_bit_column(binary_numbers: list[str], column_index: int):
-    return sum([int(binary[column_index]) for binary in binary_numbers]) / len(binary_numbers)
+    return sum([int(binary[column_index]) for binary in binary_numbers]) / len(
+        binary_numbers
+    )
 
 
-def recursive_minmax(binary_numbers: list[str], column_index: int = 0, use_max: bool = True) -> str:
+def recursive_minmax(
+    binary_numbers: list[str], column_index: int = 0, use_max: bool = True
+) -> str:
     if len(binary_numbers) == 0 or column_index >= len(binary_numbers[0]):
         return ""
     elif len(binary_numbers) == 1:
@@ -35,10 +39,18 @@ def recursive_minmax(binary_numbers: list[str], column_index: int = 0, use_max: 
 
     if average_bit_column(binary_numbers, column_index) >= 0.5:
         value = "1" if use_max else "0"
-        return value + recursive_minmax([n for n in binary_numbers if n[column_index] == value], column_index + 1, use_max)
+        return value + recursive_minmax(
+            [n for n in binary_numbers if n[column_index] == value],
+            column_index + 1,
+            use_max,
+        )
     else:
         value = "0" if use_max else "1"
-        return value + recursive_minmax([n for n in binary_numbers if n[column_index] == value], column_index + 1, use_max)
+        return value + recursive_minmax(
+            [n for n in binary_numbers if n[column_index] == value],
+            column_index + 1,
+            use_max,
+        )
 
 
 def calculate_oxygen_and_c02(binary_numbers: list[str]):
