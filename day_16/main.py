@@ -26,34 +26,34 @@ def hex_message_to_binary(message: str) -> str:
 
 def parse_instruction_from_binary(binary_message: str):
     i = 0
-    version = int(binary_message[i: i + 3], 2)
-    operator = int(binary_message[i + 3: i + 6], 2)
+    version = int(binary_message[i : i + 3], 2)
+    operator = int(binary_message[i + 3 : i + 6], 2)
     sub_instructions = []
     value = None
     i += 6
     if operator == 4:
         sub_packets = []
         while binary_message[i] == "1":
-            sub_packets.append(binary_message[i + 1: i + 5])
+            sub_packets.append(binary_message[i + 1 : i + 5])
             i += 5
-        sub_packets.append(binary_message[i + 1: i + 5])
+        sub_packets.append(binary_message[i + 1 : i + 5])
         i += 5
         value = int("".join(sub_packets), 2)
     else:
         length_type = binary_message[i]
         i += 1
         if length_type == "0":
-            length_of_sub_packets = int(binary_message[i: i + 15], 2)
+            length_of_sub_packets = int(binary_message[i : i + 15], 2)
             i += 15
             end_of_sub_packets = i + length_of_sub_packets
             while i < end_of_sub_packets:
                 sub_instruction = parse_instruction_from_binary(
-                    binary_message[i: i + end_of_sub_packets]
+                    binary_message[i : i + end_of_sub_packets]
                 )
                 i += sub_instruction.bit_size
                 sub_instructions.append(sub_instruction)
         else:
-            number_of_sub_packets = int(binary_message[i: i + 11], 2)
+            number_of_sub_packets = int(binary_message[i : i + 11], 2)
             i += 11
             for _ in range(number_of_sub_packets):
                 sub_instruction = parse_instruction_from_binary(binary_message[i:])
